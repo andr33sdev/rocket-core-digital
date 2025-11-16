@@ -1,5 +1,4 @@
 import { useState } from "react";
-import logo from "../assets/RocketLogo.svg";
 
 function ContactForm() {
   const [status, setStatus] = useState("idle");
@@ -11,6 +10,7 @@ function ContactForm() {
     const formData = new FormData(e.target);
 
     try {
+      // Mismo endpoint de Getform que ya tenías
       const response = await fetch("https://getform.io/f/arogqxyb", {
         method: "POST",
         body: formData,
@@ -30,35 +30,76 @@ function ContactForm() {
     }
   };
 
+  // Estilo reutilizable para los inputs
+  const inputStyle =
+    "w-full px-4 py-3 rounded-lg border border-white/40 bg-white/10 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-velez-gold/80";
+
   return (
-    <div>
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col sm:flex-row items-center gap-3 w-full max-w-md"
-      >
+    <form onSubmit={handleSubmit} className="flex flex-col gap-5 text-left">
+      {/* Campo de Nombre */}
+      <div>
+        <label htmlFor="name" className="block text-sm font-medium text-white/90 mb-2">
+          Nombre
+        </label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          required
+          placeholder="Tu nombre completo"
+          className={inputStyle}
+        />
+      </div>
+
+      {/* Campo de Email */}
+      <div>
+        <label htmlFor="email" className="block text-sm font-medium text-white/90 mb-2">
+          Email
+        </label>
         <input
           type="email"
           name="email"
+          id="email"
           required
-          placeholder="Your email address"
-          className="w-full sm:flex-1 px-4 py-2 rounded-2xl border border-white/40 bg-white/10 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/60"
+          placeholder="tu@email.com"
+          className={inputStyle}
         />
-        <button
-          type="submit"
-          disabled={status === "loading"}
-          className="px-6 py-2 rounded-2xl bg-white text-[#3567a5] font-semibold hover:bg-[#fbfbfb] transition-all disabled:opacity-70 cursor-pointer"
-        >
-          {status === "loading" ? "Sending..." : "Notify me"}
-        </button>
+      </div>
 
+      {/* Campo de Mensaje */}
+      <div>
+        <label htmlFor="message" className="block text-sm font-medium text-white/90 mb-2">
+          ¿En qué podemos ayudarte?
+        </label>
+        <textarea
+          name="message"
+          id="message"
+          rows="4"
+          required
+          placeholder="Cuéntanos sobre tu proyecto..."
+          className={inputStyle}
+        />
+      </div>
+
+      {/* Botón de Envío (Ahora dorado) */}
+      <button
+        type="submit"
+        disabled={status === "loading"}
+        className="w-full mt-2 px-6 py-3 rounded-full bg-velez-gold text-velez-blue-700 font-bold hover:bg-yellow-400 transition-all shadow-lg transform hover:scale-105 disabled:opacity-70 cursor-pointer"
+      >
+        {status === "loading" ? "Enviando..." : "Enviar Mensaje 🚀"}
+      </button>
+
+      {/* Mensajes de Estado */}
+      <div className="h-5 mt-2">
         {status === "success" && (
-          <p className="text-green-200 mt-3">Thanks! We’ll be in touch soon</p>
+          <p className="text-green-300 text-center">¡Gracias! Estaremos en contacto.</p>
         )}
         {status === "error" && (
-          <p className="text-red-200 mt-3">Oops! Something went wrong</p>
+          <p className="text-red-300 text-center">Oops! Algo salió mal.</p>
         )}
-      </form>
-    </div>
+      </div>
+    </form>
   );
 }
 

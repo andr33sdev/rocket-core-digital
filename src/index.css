@@ -1,4 +1,102 @@
 @import "tailwindcss";
+
 * {
     font-family: poppins;
 }
+
+html {
+    scroll-behavior: smooth;
+    /* <-- Añade esta línea */
+}
+
+/*
+ * ===========================================
+ * Fondo de Estrellas (¡CON MÁS ESTRELLAS!)
+ * ===========================================
+ */
+
+.starfield {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* Hacemos que la altura sea '100%' por defecto, 
+     el 'Home.jsx' se encargará de que cubra todo */
+    height: 100%;
+    overflow: hidden;
+    background: radial-gradient(circle, #254a7c 0%, #18304f 100%);
+}
+
+#stars-sm,
+#stars-md,
+#stars-lg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#stars-sm {
+    width: 1px;
+    height: 1px;
+    background: transparent;
+    box-shadow:
+        15vw 8vh #FFF, 82vw 8vh #FFF, 50vw 18vh #FFF, 2vw 21vh #FFF,
+        70vw 22vh #FFF, 34vw 35vh #FFF, 61vw 40vh #FFF, 47vw 41vh #FFF,
+        64vw 57vh #FFF, 24vw 60vh #FFF, 8vw 61vh #FFF, 76vw 61vh #FFF,
+        67vw 63vh #FFF, 25vw 67vh #FFF, 88vw 71vh #FFF, 91vw 73vh #FFF,
+        43vw 78vh #FFF, 3vw 81vh #FFF, 19vw 84vh #FFF, 62vw 85vh #FFF,
+        5vw 90vh #FFF, 88vw 92vh #FFF, 46vw 93vh #FFF, 80vw 94vh #FFF,
+        /* --- Estrellas extra --- */
+        5vw 5vh #FFF, 92vw 3vh #FFF, 40vw 10vh #FFF, 12vw 15vh #FFF,
+        75vw 12vh #FFF, 22vw 25vh #FFF, 67vw 30vh #FFF, 53vw 45vh #FFF,
+        70vw 50vh #FFF, 14vw 65vh #FFF, 8vw 70vh #FFF, 82vw 75vh #FFF,
+        93vw 68vh #FFF, 33vw 72vh #FFF, 90vw 80vh #FFF, 98vw 83vh #FFF,
+        38vw 88vh #FFF, 13vw 91vh #FFF, 29vw 94vh #FFF, 68vw 95vh #FFF,
+        15vw 98vh #FFF, 88vw 98vh #FFF, 56vw 99vh #FFF, 90vw 99vh #FFF;
+    animation: animStar 120s linear infinite;
+}
+
+#stars-md {
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    box-shadow:
+        9vw 3vh #FFF, 26vw 14vh #FFF, 51vw 16vh #FFF, 12vw 20vh #FFF,
+        81vw 21vh #FFF, 4vw 48vh #FFF, 78vw 53vh #FFF, 51vw 64vh #FFF,
+        92vw 65vh #FFF, 40vw 69vh #FFF, 15vw 83vh #FFF, 30vw 89vh #FFF,
+        67vw 91vh #FFF, 54vw 95vh #FFF, 96vw 95vh #FFF,
+        /* --- Estrellas extra --- */
+        22vw 33vh #FFF, 88vw 10vh #FFF, 61vw 26vh #FFF, 22vw 28vh #FFF,
+        85vw 31vh #FFF, 14vw 38vh #FFF, 70vw 43vh #FFF, 61vw 54vh #FFF,
+        98vw 60vh #FFF, 30vw 79vh #FFF, 25vw 73vh #FFF, 40vw 80vh #FFF,
+        77vw 81vh #FFF, 64vw 85vh #FFF, 96vw 88vh #FFF;
+    animation: animStar 80s linear infinite;
+}
+
+#stars-lg {
+    width: 3px;
+    height: 3px;
+    background: transparent;
+    box-shadow:
+        5vw 15vh #FFF, 46vw 25vh #FFF, 20vw 30vh #FFF, 80vw 45vh #FFF,
+        35vw 55vh #FFF, 90vw 70vh #FFF, 10vw 80vh #FFF, 60vw 90vh #FFF,
+        /* --- Estrellas extra --- */
+        25vw 5vh #FFF, 75vw 10vh #FFF, 55vw 35vh #FFF, 95vw 50vh #FFF,
+        45vw 65vh #FFF, 80vw 85vh #FFF, 15vw 95vh #FFF, 70vw 98vh #FFF;
+    animation: animStar 50s linear infinite;
+}
+
+@keyframes animStar {
+    from {
+        transform: translateY(0px);
+    }
+
+    to {
+        /* Hacemos que la animación sea un poco más larga que el vh
+       para asegurar un bucle suave */
+        transform: translateY(-1000px);
+    }
+}
+
